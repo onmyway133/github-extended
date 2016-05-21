@@ -1,0 +1,19 @@
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# node_modules
+temp
+.tmp
+# dist
+.sass-cache
+# app/bower_components
+# test/bower_components
+# package
+# app/scripts
+
