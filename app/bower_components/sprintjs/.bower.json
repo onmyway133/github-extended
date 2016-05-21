@@ -1,0 +1,18 @@
+{
+  "name": "sprintjs",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bendc/sprint",
+  "main": "sprint.js",
+  "license": "MIT",
+  "ignore": [],
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "bd4cb8f4d0a6590a213604e4207fd1ce0c75f09d"
+  },
+  "_source": "https://github.com/philplckthun/sprint.git",
+  "_target": "^0.1.0",
+  "_originalSource": "sprint",
+  "_direct": true
+}

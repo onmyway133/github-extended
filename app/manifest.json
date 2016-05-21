@@ -8,11 +8,17 @@
     "128": "images/icon-128.png"
   },
   "default_locale": "en",
-  "background": {
-    "scripts": [
-      "scripts/chromereload.js",
-      "scripts/background.js"
-    ]
-  },
-  "permissions": []
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": [
+        "scripts/content.js",
+        "bower_components/fetch/fetch.js"
+      ]
+    }
+  ],
+  "permissions": ["https://github.com/*"]
 }
