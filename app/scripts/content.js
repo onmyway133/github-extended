@@ -1,11 +1,12 @@
 'use strict';
 
-function Option(title, value) {
+function Option(title, value, description) {
   this.title = title;
   this.value = value;
+  this.description = description;
 }
 
-var options = [new Option('🙂', 5), new Option('😀', 10), new Option('😬', 15)];
+var options = [new Option('🙂', 5, 'Show 5 repositories'), new Option('😀', 10, 'Show 10 repositories'), new Option('😬', 15, 'Show 15')];
 
 document.addEventListener('DOMContentLoaded', function () {
   check(location);
@@ -97,9 +98,10 @@ function makeButtonSet(options) {
 
   options.forEach(function (value, index) {
     var id = 'extended-option' + index;
+    var description = 'Show ' + options[index].value + ' repositories';
 
     var radio = $('<input />', { id: id }).attr('type', 'radio').attr('name', 'radio').attr('value', options[index].value);
-    var label = $('<label />').attr('for', id).text(options[index].title).css('font-size', 17);
+    var label = $('<label />').attr('for', id).text(options[index].title).css('font-size', 17).attr('title', description);
 
     if (index == 0) {
       radio.attr('checked', 'checked');
