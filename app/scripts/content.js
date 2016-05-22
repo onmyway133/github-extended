@@ -1,5 +1,12 @@
 'use strict';
 
+function Option(title, value) {
+  this.title = title;
+  this.value = value;
+}
+
+var options = [new Option('🙂', 5), new Option('😀', 10), new Option('😬', 15)];
+
 document.addEventListener('DOMContentLoaded', function () {
   check(location);
 });
@@ -58,8 +65,6 @@ function add(repositories) {
 }
 
 function addOptions(repositories) {
-  var options = ['🙂', '😀', '😬'];
-
   // Create elements
   var div = $('<div />');
 
@@ -67,7 +72,7 @@ function addOptions(repositories) {
     var id = 'extended-option' + index;
 
     var radio = $('<input />', { id: id }).attr('type', 'radio').attr('name', 'radio');
-    var label = $('<label />').attr('for', id).text(options[index]);
+    var label = $('<label />').attr('for', id).text(options[index].title);
 
     if (index == 0) {
       radio.attr('checked', 'checked');

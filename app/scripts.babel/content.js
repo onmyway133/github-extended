@@ -1,5 +1,16 @@
 'use strict';
 
+function Option(title, value) {
+    this.title = title;
+    this.value = value
+}
+
+const options = [
+    new Option('🙂', 5),
+    new Option('😀', 10),
+    new Option('😬', 15)
+];
+
 document.addEventListener('DOMContentLoaded', function () {
   check(location)
 });
@@ -61,8 +72,6 @@ function add(repositories) {
 }
 
 function addOptions(repositories) {
-  const options = ['🙂', '😀', '😬']
-
   // Create elements
   const div = $('<div />')
 
@@ -70,7 +79,7 @@ function addOptions(repositories) {
     const id = 'extended-option' + index
 
     const radio = $('<input />', {id: id}).attr('type', 'radio').attr('name', 'radio')
-    const label = $('<label />').attr('for', id).text(options[index])
+    const label = $('<label />').attr('for', id).text(options[index].title)
 
     if (index == 0) {
       radio.attr('checked', 'checked')
