@@ -45,21 +45,23 @@ function showOptions(repositories) {
   $(box).append(buttonSet);
 
   // Event
+  var ul = popularRepositoriesElement().find('ul');
+  var defaultItems = ul.find('li');
+
   $(buttonSet).change(function (e) {
-    handle(e.target.value, repositories);
+    handle(e.target.value, repositories, defaultItems);
   });
 }
 
-function handle(optionValue, repositories) {
+function handle(optionValue, repositories, defaultItems) {
   var ul = popularRepositoriesElement().find('ul');
-  var defaultItems = ul.find('li');
   var defaultValue = options[0].value;
 
   if (optionValue == defaultValue) {
-    $(ul).find('li').replaceWith(defaultItems);
+    $(ul).empty().append($(defaultItems));
   } else {
     var items = makeItems(repositories, defaultValue, optionValue);
-    $(ul).find('li').replaceWith(defaultItems + items);
+    $(ul).empty().append($(defaultItems)).append($(items));
   }
 }
 
@@ -85,7 +87,7 @@ function makeItems(repositories, from, to) {
     // Description
     $(li).find('.repo-description.css-truncate-target').text(repo.description);
 
-    return li;
+    return $(li).get(0);
   });
 }
 
@@ -97,7 +99,7 @@ function makeButtonSet(options) {
     var id = 'extended-option' + index;
 
     var radio = $('<input />', { id: id }).attr('type', 'radio').attr('name', 'radio').attr('value', options[index].value);
-    var label = $('<label />').attr('for', id).text(options[index].title);
+    var label = $('<label />').attr('for', id).text(options[index].title).css('font-size', 17);
 
     if (index == 0) {
       radio.attr('checked', 'checked');
@@ -109,7 +111,7 @@ function makeButtonSet(options) {
 
   // Button Set
   var buttonSet = div.buttonset();
-  $(buttonSet).find('label span').css('padding', '1px 10px');
+  $(buttonSet).find('label span').css('padding', '0px 10px');
   $(buttonSet).parent().css({ position: 'relative' });
   $(buttonSet).css({ top: 5, right: 3, position: 'absolute' });
 
