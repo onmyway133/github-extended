@@ -5,7 +5,8 @@
   "dependencies": {
     "fetch": "^1.0.0",
     "github": "^2.0.0",
-    "jquery": "^2.2.4"
+    "jquery": "^2.2.4",
+    "jquery-ui": "^1.11.4"
   },
   "devDependencies": {}
 }
