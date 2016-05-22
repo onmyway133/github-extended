@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "dependencies": {
-    "sprintjs": "sprint#^0.1.0",
     "fetch": "^1.0.0",
-    "github": "^2.0.0"
+    "github": "^2.0.0",
+    "jquery": "^2.2.4"
   },
   "devDependencies": {}
 }

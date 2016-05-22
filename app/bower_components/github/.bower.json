@@ -1,0 +1,14 @@
+{
+  "name": "github",
+  "homepage": "https://github.com/michael/github",
+  "version": "2.0.0",
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.0",
+    "commit": "c27af212eddeaf7d1aec365a3d870d862369fd11"
+  },
+  "_source": "https://github.com/michael/github.git",
+  "_target": "^2.0.0",
+  "_originalSource": "github"
+}

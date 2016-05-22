@@ -46,7 +46,8 @@ function add(repositories) {
     $(name).text(repo.name);
 
     // Star
-    $(li).find('.stars').text(repo.stargazers_count);
+    console.log($(li).find('.stars').contents().first());
+    $(li).find('.stars').get(0).text(repo.stargazers_count);
 
     // Description
     $(li).find('.repo-description.css-truncate-target').text(repo.description);
