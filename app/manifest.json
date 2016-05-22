@@ -16,7 +16,8 @@
       ],
       "js": [
         "scripts/content.js",
-        "bower_components/fetch/fetch.js"
+        "bower_components/fetch/fetch.js",
+        "bower_components/sprintjs/sprint.min.js"
       ]
     }
   ],
