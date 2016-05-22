@@ -41,15 +41,40 @@ function process(repositories) {
     return (repo1.stargazers_count < repo2.stargazers_count) ? 1 : -1
   })
 
-  addOptions(processedRepositories)
-  add(processedRepositories)
+  showOptions(processedRepositories)
 }
 
-function add(repositories) {
+function showOptions(repositories) {
+  const buttonSet = makeButtonSet(options)
+
+  // Box
+  const box = popularRepositoriesElement()
+  $(box).append(buttonSet)
+
+  // Event
+  $(buttonSet).change((e) => {
+    handle(e.target.value, repositories)
+  })
+}
+
+function handle(optionValue, repositories) {
+  const ul = popularRepositoriesElement().find('ul')
+  const defaultItems = ul.find('li')
+  const defaultValue = options[0].value
+
+  if (optionValue == defaultValue) {
+    $(ul).find('li').replaceWith(defaultItems)
+  } else {
+    const items = makeItems(repositories, defaultValue, optionValue)
+    $(ul).find('li').replaceWith(defaultItems + items)
+  }
+}
+
+function makeItems(repositories, from, to) {
   const ul = $(popularRepositoriesElement()).find('ul')
   const sample_li = $(ul).find('li:first-child')
 
-  repositories.forEach((repo) => {
+  return repositories.slice(from, to).map((repo) => {
     const li = sample_li.clone()
 
     // URL
@@ -67,18 +92,18 @@ function add(repositories) {
     // Description
     $(li).find('.repo-description.css-truncate-target').text(repo.description)
 
-    $(ul).append(li)
+    return li
   })
 }
 
-function addOptions(repositories) {
+function makeButtonSet(options) {
   // Create elements
   const div = $('<div />')
 
   options.forEach((value, index) => {
     const id = 'extended-option' + index
 
-    const radio = $('<input />', {id: id}).attr('type', 'radio').attr('name', 'radio')
+    const radio = $('<input />', {id: id}).attr('type', 'radio').attr('name', 'radio').attr('value', options[index].value)
     const label = $('<label />').attr('for', id).text(options[index].title)
 
     if (index == 0) {
@@ -95,14 +120,7 @@ function addOptions(repositories) {
   $(buttonSet).parent().css({position: 'relative'});
   $(buttonSet).css({top: 5, right: 3, position: 'absolute'});
 
-  // Box
-  const box = popularRepositoriesElement()
-  $(box).append(buttonSet)
-
-  // Event
-  $(buttonSet).change((e) => {
-    console.log(e)
-  })
+  return buttonSet
 }
 
 function popularRepositoriesElement() {

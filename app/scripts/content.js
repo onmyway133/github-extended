@@ -34,15 +34,40 @@ function process(repositories) {
     return repo1.stargazers_count < repo2.stargazers_count ? 1 : -1;
   });
 
-  addOptions(processedRepositories);
-  add(processedRepositories);
+  showOptions(processedRepositories);
 }
 
-function add(repositories) {
+function showOptions(repositories) {
+  var buttonSet = makeButtonSet(options);
+
+  // Box
+  var box = popularRepositoriesElement();
+  $(box).append(buttonSet);
+
+  // Event
+  $(buttonSet).change(function (e) {
+    handle(e.target.value, repositories);
+  });
+}
+
+function handle(optionValue, repositories) {
+  var ul = popularRepositoriesElement().find('ul');
+  var defaultItems = ul.find('li');
+  var defaultValue = options[0].value;
+
+  if (optionValue == defaultValue) {
+    $(ul).find('li').replaceWith(defaultItems);
+  } else {
+    var items = makeItems(repositories, defaultValue, optionValue);
+    $(ul).find('li').replaceWith(defaultItems + items);
+  }
+}
+
+function makeItems(repositories, from, to) {
   var ul = $(popularRepositoriesElement()).find('ul');
   var sample_li = $(ul).find('li:first-child');
 
-  repositories.forEach(function (repo) {
+  return repositories.slice(from, to).map(function (repo) {
     var li = sample_li.clone();
 
     // URL
@@ -60,18 +85,18 @@ function add(repositories) {
     // Description
     $(li).find('.repo-description.css-truncate-target').text(repo.description);
 
-    $(ul).append(li);
+    return li;
   });
 }
 
-function addOptions(repositories) {
+function makeButtonSet(options) {
   // Create elements
   var div = $('<div />');
 
   options.forEach(function (value, index) {
     var id = 'extended-option' + index;
 
-    var radio = $('<input />', { id: id }).attr('type', 'radio').attr('name', 'radio');
+    var radio = $('<input />', { id: id }).attr('type', 'radio').attr('name', 'radio').attr('value', options[index].value);
     var label = $('<label />').attr('for', id).text(options[index].title);
 
     if (index == 0) {
@@ -88,14 +113,7 @@ function addOptions(repositories) {
   $(buttonSet).parent().css({ position: 'relative' });
   $(buttonSet).css({ top: 5, right: 3, position: 'absolute' });
 
-  // Box
-  var box = popularRepositoriesElement();
-  $(box).append(buttonSet);
-
-  // Event
-  $(buttonSet).change(function (e) {
-    console.log(e);
-  });
+  return buttonSet;
 }
 
 function popularRepositoriesElement() {
