@@ -6,11 +6,8 @@ A Chrome extension to discover more repositories
 # Features
 
 - Template using [generator-chrome-extension](https://github.com/yeoman/generator-chrome-extension)
-- Available https://chrome.google.com/webstore/detail/github-extended/doidfnmbfadacpcjkekkgofkmnkljnhi/related
+- Available on Chrome Web Store https://chrome.google.com/webstore/detail/github-extended/doidfnmbfadacpcjkekkgofkmnkljnhi
 
-```js
-gulp build
-```
 
 ![](Screenshots/github.gif)
 
