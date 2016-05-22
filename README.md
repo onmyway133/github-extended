@@ -1,7 +1,17 @@
 # github-extended
 A Chrome extension to discover more repositories
 
+![](Screenshots/Banner.png)
 
+# Features
+
+- Template using [generator-chrome-extension](https://github.com/yeoman/generator-chrome-extension)
+
+```js
+gulp build
+```
+
+![](Screenshots/github.gif)
 
 ## Author
 
