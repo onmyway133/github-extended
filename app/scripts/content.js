@@ -1,12 +1,11 @@
 'use strict';
 
-function Option(title, value, description) {
+function Option(title, value) {
   this.title = title;
   this.value = value;
-  this.description = description;
 }
 
-var options = [new Option('🙂', 5, 'Show 5 repositories'), new Option('😀', 10, 'Show 10 repositories'), new Option('😬', 15, 'Show 15')];
+var options = [new Option('🙂', 5), new Option('😀', 10), new Option('😬', 15)];
 
 document.addEventListener('DOMContentLoaded', function () {
   check(location);
