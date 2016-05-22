@@ -17,7 +17,11 @@
       "js": [
         "scripts/content.js",
         "bower_components/fetch/fetch.js",
-        "bower_components/jquery/dist/jquery.min.js"
+        "bower_components/jquery/dist/jquery.min.js",
+        "bower_components/jquery-ui/jquery-ui.min.js"
+      ],
+      "css": [
+        "bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css"
       ]
     }
   ],

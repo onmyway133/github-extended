@@ -31,7 +31,7 @@ function process(repositories) {
 }
 
 function add(repositories) {
-  var ul = popularRepositoriesElement();
+  var ul = $(popularRepositoriesElement()).find('ul');
   var sample_li = $(ul).find('li:first-child');
 
   repositories.forEach(function (repo) {
@@ -46,11 +46,8 @@ function add(repositories) {
     $(name).text(repo.name);
 
     // Star
-    $(li).find('.stars').contents().filter(function (node) {
-      return node.nodeType == 3;
-    }).each(function (node) {
-      node.textContent = node.textContent.replace(repo.stargazers_count);
-    });
+    var star_icon = $(li).find('.stars svg');
+    $(li).find('.stars').text(repo.stargazers_count + ' ').append(star_icon);
 
     // Description
     $(li).find('.repo-description.css-truncate-target').text(repo.description);
@@ -59,7 +56,9 @@ function add(repositories) {
   });
 }
 
+function addButtons() {}
+
 function popularRepositoriesElement() {
-  var element = $('.contributions-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush ul');
+  var element = $('.contributions-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush');
   return element;
 }
