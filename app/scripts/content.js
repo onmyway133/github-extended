@@ -13,7 +13,7 @@ function check(location) {
 }
 
 function fetchRepositories(username) {
-  fetch('https://api.github.com/users/' + username + '/repos?visibility=public&affiliation=owner&per_page=100').then(function (response) {
+  fetch('https://api.github.com/users/' + username + '/repos?visibility=public&affiliation=owner&sort=updated&per_page=100').then(function (response) {
     return response.json();
   }).then(function (json) {
     process(json);
@@ -27,6 +27,7 @@ function process(repositories) {
     return repo1.stargazers_count < repo2.stargazers_count ? 1 : -1;
   });
 
+  addOptions(processedRepositories);
   add(processedRepositories);
 }
 
@@ -46,8 +47,8 @@ function add(repositories) {
     $(name).text(repo.name);
 
     // Star
-    var star_icon = $(li).find('.stars svg');
-    $(li).find('.stars').text(repo.stargazers_count + ' ').append(star_icon);
+    var starIcon = $(li).find('.stars svg');
+    $(li).find('.stars').text(repo.stargazers_count + ' ').append(starIcon);
 
     // Description
     $(li).find('.repo-description.css-truncate-target').text(repo.description);
@@ -56,7 +57,41 @@ function add(repositories) {
   });
 }
 
-function addButtons() {}
+function addOptions(repositories) {
+  var options = ['🙂', '😀', '😬'];
+
+  // Create elements
+  var div = $('<div />');
+
+  options.forEach(function (value, index) {
+    var id = 'extended-option' + index;
+
+    var radio = $('<input />', { id: id }).attr('type', 'radio').attr('name', 'radio');
+    var label = $('<label />').attr('for', id).text(options[index]);
+
+    if (index == 0) {
+      radio.attr('checked', 'checked');
+    }
+
+    $(div).append(radio);
+    $(div).append(label);
+  });
+
+  // Button Set
+  var buttonSet = div.buttonset();
+  $(buttonSet).find('label span').css('padding', '1px 10px');
+  $(buttonSet).parent().css({ position: 'relative' });
+  $(buttonSet).css({ top: 5, right: 3, position: 'absolute' });
+
+  // Box
+  var box = popularRepositoriesElement();
+  $(box).append(buttonSet);
+
+  // Event
+  $(buttonSet).change(function (e) {
+    console.log(e);
+  });
+}
 
 function popularRepositoriesElement() {
   var element = $('.contributions-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush');
