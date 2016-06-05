@@ -92,7 +92,20 @@ function makeItems(repositories, from, to) {
     $(li).find('.stars').text(repo.stargazers_count + ' ').append(starIcon)
 
     // Description
-    $(li).find('.repo-description.css-truncate-target').text(repo.description)
+    var desc = repo.description
+    desc = desc.replace(/:\w+:/g, function(m) {
+      var name = m.replace(':', '').replace(':', '');
+
+      for (var i=0; i<emoji_list.length; i++) {
+        if (emoji_list[i].aliases[0] == name) {
+          return emoji_list[i].emoji
+        }
+      }
+
+      return m
+    });
+
+    $(li).find('.repo-description.css-truncate-target').text(desc)
 
     return $(li).get(0)
   })
