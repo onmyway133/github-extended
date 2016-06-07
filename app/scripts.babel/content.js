@@ -1,7 +1,7 @@
 'use strict';
 
 function Option(title, value) {
-    this.title = title;
+    this.title = title
     this.value = value
 }
 
@@ -140,6 +140,6 @@ function makeButtonSet(options) {
 }
 
 function popularRepositoriesElement() {
-  const element = $('.contributions-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush')
+  const element = $('.overview-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush')
   return element
 }

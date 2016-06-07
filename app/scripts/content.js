@@ -133,6 +133,6 @@ function makeButtonSet(options) {
 }
 
 function popularRepositoriesElement() {
-  var element = $('.contributions-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush');
+  var element = $('.overview-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush');
   return element;
 }
