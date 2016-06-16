@@ -134,12 +134,12 @@ function makeButtonSet(options) {
   const buttonSet = div.buttonset()
   $(buttonSet).find('label span').css('padding', '0px 10px')
   $(buttonSet).parent().css({position: 'relative'});
-  $(buttonSet).css({top: 5, right: 3, position: 'absolute'});
+  $(buttonSet).css({top: 5, left: 150, position: 'absolute'});
 
   return buttonSet
 }
 
 function popularRepositoriesElement() {
-  const element = $('.overview-tab .columns.popular-repos .column.one-half:first-child .boxed-group.flush')
+  const element = $('.overview-tab .columns.popular-repos .single-column .boxed-group.flush')
   return element
 }
