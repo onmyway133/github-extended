@@ -52,7 +52,7 @@ function showOptions(repositories) {
   $(box).append(buttonSet)
 
   // Event
-  const ul = popularRepositoriesElement().find('ul')
+  const ul = popularRepositoriesElement().find('ol')
   const defaultItems = ul.find('li')
 
   $(buttonSet).change((e) => {
