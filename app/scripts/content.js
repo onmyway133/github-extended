@@ -72,13 +72,15 @@ function makeItems(repositories, from, to) {
   return repositories.slice(from, to).map(function (repo) {
     var li = sample_li.clone();
 
-    // URL
-    $(li).find('a').attr('href', repo.html_url);
+    // Name & URL
+    var nameContainer = $(li).find('span.d-block a');
+    $(nameContainer).attr('href', repo.html_url);
 
-    // Name
-    var name = $(li).find('.repo.js-repo');
+    var name = $(nameContainer).find('.repo.js-repo');
     $(name).attr('title', repo.name);
     $(name).text(repo.name);
+
+    $(nameContainer).empty().append(name);
 
     // Star & Language
     var starIcon = $(li).find('svg.octicon-star');
