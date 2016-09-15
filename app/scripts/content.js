@@ -54,7 +54,7 @@ function showOptions(repositories) {
 }
 
 function handle(optionValue, repositories, defaultItems) {
-  var ul = popularRepositoriesElement().find('ul');
+  var ul = popularRepositoriesElement().find('ol');
   var defaultValue = options[0].value;
 
   if (optionValue == defaultValue) {
@@ -66,7 +66,7 @@ function handle(optionValue, repositories, defaultItems) {
 }
 
 function makeItems(repositories, from, to) {
-  var ul = $(popularRepositoriesElement()).find('ul');
+  var ul = $(popularRepositoriesElement()).find('ol');
   var sample_li = $(ul).find('li:first-child');
 
   return repositories.slice(from, to).map(function (repo) {
@@ -76,13 +76,21 @@ function makeItems(repositories, from, to) {
     $(li).find('a').attr('href', repo.html_url);
 
     // Name
-    var name = $(li).find('.repo-and-owner.css-truncate-target .repo');
+    var name = $(li).find('.repo.js-repo');
     $(name).attr('title', repo.name);
     $(name).text(repo.name);
 
-    // Star
-    var starIcon = $(li).find('.stars svg');
-    $(li).find('.stars').text(repo.stargazers_count + ' ').append(starIcon);
+    // Star & Language
+    var starIcon = $(li).find('svg.octicon-star');
+    var languageIcon = $(li).find('span.pinned-repo-language-color');
+    languageIcon.css('background-color', github_language_colors[repo.language]);
+
+    var starAndLanguage = $(li).find('.mb-0.f6.text-gray');
+    starAndLanguage.empty().append(starIcon).append(' ' + repo.stargazers_count);
+
+    if (repo.language) {
+      starAndLanguage.append(languageIcon).append(' ' + repo.language);
+    }
 
     // Description
     var desc = repo.description;
@@ -98,7 +106,7 @@ function makeItems(repositories, from, to) {
       return m;
     });
 
-    $(li).find('.repo-description.css-truncate-target').text(desc);
+    $(li).find('.pinned-repo-desc').text(desc);
 
     return $(li).get(0);
   });

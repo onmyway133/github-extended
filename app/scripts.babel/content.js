@@ -61,7 +61,7 @@ function showOptions(repositories) {
 }
 
 function handle(optionValue, repositories, defaultItems) {
-  const ul = popularRepositoriesElement().find('ul')
+  const ul = popularRepositoriesElement().find('ol')
   const defaultValue = options[0].value
 
   if (optionValue == defaultValue) {
@@ -73,7 +73,7 @@ function handle(optionValue, repositories, defaultItems) {
 }
 
 function makeItems(repositories, from, to) {
-  const ul = $(popularRepositoriesElement()).find('ul')
+  const ul = $(popularRepositoriesElement()).find('ol')
   const sample_li = $(ul).find('li:first-child')
 
   return repositories.slice(from, to).map((repo) => {
@@ -83,13 +83,21 @@ function makeItems(repositories, from, to) {
     $(li).find('a').attr('href', repo.html_url)
 
     // Name
-    const name = $(li).find('.repo-and-owner.css-truncate-target .repo')
+    const name = $(li).find('.repo.js-repo')
     $(name).attr('title', repo.name)
     $(name).text(repo.name)
 
-    // Star
-    const starIcon = $(li).find('.stars svg')
-    $(li).find('.stars').text(repo.stargazers_count + ' ').append(starIcon)
+    // Star & Language
+    const starIcon = $(li).find('svg.octicon-star')
+    const languageIcon = $(li).find('span.pinned-repo-language-color')
+    languageIcon.css('background-color', github_language_colors[repo.language])
+
+    const starAndLanguage = $(li).find('.mb-0.f6.text-gray')
+    starAndLanguage.empty().append(starIcon).append(' ' + repo.stargazers_count)
+
+    if (repo.language) {
+      starAndLanguage.append(languageIcon).append(' ' + repo.language)
+    }
 
     // Description
     var desc = repo.description
@@ -105,7 +113,7 @@ function makeItems(repositories, from, to) {
       return m
     });
 
-    $(li).find('.repo-description.css-truncate-target').text(desc)
+    $(li).find('.pinned-repo-desc').text(desc)
 
     return $(li).get(0)
   })
