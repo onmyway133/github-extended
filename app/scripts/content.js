@@ -127,12 +127,12 @@ function makeButtonSet(options) {
   var buttonSet = div.buttonset();
   $(buttonSet).find('label span').css('padding', '0px 10px');
   $(buttonSet).parent().css({ position: 'relative' });
-  $(buttonSet).css({ top: 5, left: 150, position: 'absolute' });
+  $(buttonSet).css({ top: -5, left: 160, position: 'absolute' });
 
   return buttonSet;
 }
 
 function popularRepositoriesElement() {
-  var element = $('.overview-tab .columns.popular-repos .single-column .boxed-group.flush');
+  var element = $('.js-repo-filter.position-relative .mt-4 .js-pinned-repos-reorder-container');
   return element;
 }
