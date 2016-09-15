@@ -5,7 +5,7 @@ function Option(title, value) {
   this.value = value;
 }
 
-var options = [new Option('🙂', 5), new Option('😀', 10), new Option('😬', 15)];
+var options = [new Option('🙂', 0), new Option('😀', 5), new Option('😬', 10), new Option('😎', 15)];
 
 document.addEventListener('DOMContentLoaded', function () {
   check(location);

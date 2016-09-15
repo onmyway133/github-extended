@@ -6,9 +6,10 @@ function Option(title, value) {
 }
 
 const options = [
-    new Option('🙂', 5),
-    new Option('😀', 10),
-    new Option('😬', 15)
+    new Option('🙂', 0),
+    new Option('😀', 5),
+    new Option('😬', 10),
+    new Option('😎', 15)
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
